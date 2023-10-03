@@ -59,8 +59,10 @@ header {
 main {
   display: grid;
   grid-template-areas: "side-navigation content";
+  grid-template-columns: 145px auto;
   height: 100vh;
   background-color: var(--bg);
+  justify-items: center;
 }
 
 .side-navigation {
@@ -87,6 +89,7 @@ main {
   grid-area: content;
   padding: 1rem;
   padding-top: 3.5rem;
+  width: 100%;
 }
 
 /* Typography */
@@ -146,6 +149,7 @@ button {
   cursor: pointer;
   transition: 0.3s ease-in-out;
   text-decoration: none;
+  width: 175px;
 }
 
 /* Primary Button */
