@@ -90,6 +90,9 @@ main {
   padding: 1rem;
   padding-top: 3.5rem;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Typography */
