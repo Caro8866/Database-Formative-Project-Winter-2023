@@ -1,0 +1,237 @@
+@import url(./reset.css);
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+:root {
+  /* Colors */
+  --neutral-000: #ffffff;
+  --neutral-100: #d9d9d9;
+  --neutral-200: #929292;
+  --neutral-300: #626262;
+  --neutral-400: #171818;
+  --green-100: #abebd8;
+  --green-200: #006748;
+  --green-300: #00311c;
+  --bg: #f5f5f5;
+
+  /* Font weights  */
+  --fw-bold: 700;
+  --fw-semi-bold: 600;
+  --fw-medium: 500;
+  --fw-regular: 400;
+  --fw-light: 300;
+}
+
+body {
+  display: grid;
+  grid-template-rows: 65px auto;
+  grid-template-areas:
+    "header"
+    "main";
+  color: var(--neutral-400);
+  font-family: "Inter", sans-serif;
+}
+
+header {
+  grid-area: header;
+  border-bottom: 1px solid var(--neutral-100);
+  background-color: var(--neutral-000);
+  display: flex;
+  flex-flow: nowrap row;
+  align-items: center;
+  padding-left: 1rem;
+}
+
+.type-logo {
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  font-weight: var(--fw-semi-bold);
+  color: var(--green-200);
+  letter-spacing: 0.014rem;
+  line-height: normal;
+  font-weight: var(--fw-regular);
+  color: var(--neutral-300);
+}
+
+.current-page {
+  color: var(--neutral-400);
+}
+
+main {
+  display: grid;
+  grid-template-areas: "side-navigation content";
+  height: 100vh;
+  background-color: var(--bg);
+}
+
+.side-navigation {
+  grid-area: side-navigation;
+  background-color: var(--neutral-000);
+  border-right: 1px solid var(--neutral-100);
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  padding-top: 24px;
+  padding-inline: 12px;
+  max-width: 145px;
+}
+
+.divider {
+  border-bottom: 2px solid var(--neutral-100);
+  margin-block: 1.5rem;
+  width: 4rem;
+  align-self: center;
+}
+
+.content {
+  max-width: 1175px;
+  grid-area: content;
+  padding: 1rem;
+  padding-top: 3.5rem;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+  font-weight: var(--fw-semi-bold);
+  margin-bottom: 1rem;
+  position: relative;
+  left: 10px;
+}
+
+h1::before,
+h2::before,
+h3::before {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  background: var(--green-200);
+  left: -10px;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+h2 {
+  font-size: 1.125rem;
+}
+h3 {
+  font-size: 1rem;
+}
+
+p {
+  color: var(--neutral-300);
+  font-size: 0.875rem;
+  font-weight: var(--fw-regular);
+  line-height: normal;
+  letter-spacing: 0.014rem;
+}
+
+a {
+  color: var(--green-200);
+  text-decoration: none;
+  font-weight: var(--fw-semi-bold);
+  letter-spacing: 0.014rem;
+}
+
+/* Buttons */
+button {
+  border: 2px solid var(--green-200);
+  border-radius: 8px;
+  padding: 0.6875rem 1.3125rem; /* 11px 21px */
+  font-size: 1.125rem;
+  font-weight: var(--fw-semi-bold);
+  letter-spacing: 0.014rem;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+/* Primary Button */
+.btn-primary {
+  background-color: var(--green-200);
+  color: var(--neutral-000);
+}
+
+.btn-primary:hover {
+  border: 2px solid var(--green-100);
+  background-color: var(--green-100);
+}
+
+.btn-primary:active {
+  border: 2px solid var(--green-300);
+  background-color: var(--green-300);
+}
+
+.btn-primary:disabled {
+  border: 2px solid var(--neutral-200);
+  background-color: var(--neutral-200);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  background-color: var(--neutral-000);
+  color: var(--green-200);
+}
+
+.btn-secondary:hover {
+  border: 2px solid var(--green-100);
+  color: var(--green-100);
+}
+
+.btn-secondary:active {
+  border: 2px solid var(--green-300);
+  color: var(--green-300);
+}
+
+.btn-secondary:disabled {
+  border: 2px solid var(--neutral-200);
+  color: var(--neutral-200);
+}
+
+/* Tabs */
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 80px;
+  font-weight: var(--fw-regular);
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--neutral-200);
+  transition: 0.3s ease-in-out;
+}
+
+.tab svg path {
+  fill: var(--neutral-200);
+}
+
+.tab:hover {
+  background-color: var(--neutral-100);
+  color: var(--neutral-300);
+}
+
+.tab:hover svg path {
+  fill: var(--neutral-300);
+}
+
+.tab-active {
+  background-color: var(--green-100);
+  color: var(--green-200);
+}
+
+.tab-active svg path {
+  fill: var(--green-200);
+}
+
+.tab:active {
+  background-color: var(--neutral-200);
+  color: var(--neutral-300);
+}
+
+.tab:active svg path {
+  fill: var(--neutral-300);
+}
