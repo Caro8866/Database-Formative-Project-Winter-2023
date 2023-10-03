@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning Dashboard | Choose a Topic</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .topic-card {
+        width: 30%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        margin: 10px;
+        text-align: center;
+        cursor: pointer;
+      }
+      .topic-card:hover {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome! Choose a Topic to Get Started</h1>
+
+    <div class="container">
+      <div class="topic-card" onclick="selectTopic('1')">
+        <h3>What is a document database?</h3>
+      </div>
+      <div class="topic-card" onclick="selectTopic('2')">
+        <h3>What is horizontal scaling?</h3>
+      </div>
+      <div class="topic-card" onclick="selectTopic('3')">
+        <h3>What is an entity-relationship diagram?</h3>
+      </div>
+      <!-- Add more topics as needed -->
+    </div>
+
+    <script>
+      function selectTopic(topicId) {
+        // Here you can send the selected topic to your server for processing
+        // For now, we'll just alert the user
+        alert("You have selected Topic " + topicId);
+      }
+    </script>
+  </body>
+</html>

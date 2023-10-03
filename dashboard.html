@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning Dashboard</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      header {
+        background-color: #50b3a2;
+        color: white;
+        text-align: center;
+        padding: 1em;
+        font-size: 1.5em;
+      }
+      nav {
+        background-color: #333;
+        color: white;
+        padding: 1em;
+      }
+      nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-around;
+      }
+      #container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 20px;
+      }
+      #sidebar,
+      #content {
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      #sidebar {
+        flex: 1;
+        background-color: #333;
+        color: white;
+      }
+      #content {
+        flex: 3;
+        background-color: #fff;
+      }
+      .activity {
+        border: 1px solid #ddd;
+        margin: 10px 0;
+        padding: 10px;
+        background-color: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body>
+    <header>Learning Dashboard</header>
+
+    <nav>
+      <ul>
+        <li>Home</li>
+        <li>Profile</li>
+        <li>Settings</li>
+        <li>Logout</li>
+      </ul>
+    </nav>
+
+    <div id="container">
+      <div id="sidebar">
+        <h3>Current Topic</h3>
+        <p>What is a Document Database?</p>
+
+        <h3>Progress</h3>
+        <p>3/10 Activities Completed</p>
+
+        <h3>Switch Topic</h3>
+        <ul>
+          <li>Horizontal Scaling</li>
+          <li>Entity Relationship Diagram</li>
+        </ul>
+      </div>
+
+      <div id="content">
+        <h2>Activities</h2>
+
+        <div class="activity">
+          <h3>Activity 1: Introduction</h3>
+          <p>Some dummy text about this activity.</p>
+          <button>Start</button>
+        </div>
+
+        <div class="activity">
+          <h3>Activity 2: Quiz</h3>
+          <p>Some dummy text about this activity.</p>
+          <button>Start</button>
+        </div>
+
+        <div class="activity">
+          <h3>Activity 3: Case Study</h3>
+          <p>Some dummy text about this activity.</p>
+          <button>Start</button>
+        </div>
+
+        <h2>Additional Resources</h2>
+        <ul>
+          <li>Article: Introduction to Document Databases</li>
+          <li>Video: Understanding NoSQL</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
