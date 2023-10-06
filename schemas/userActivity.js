@@ -1,13 +1,15 @@
 const mongoose = require("mongoose");
 
-const UserActivitySchema = new mongoose.Schema({
-  UserID: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-  ActivityID: { type: mongoose.Schema.Types.ObjectId, ref: "Activity", required: true },
-  status: { type: Boolean, required: true },
+const userActivitySchema = new mongoose.Schema({
+  _id: { type: String }, // Explicitly define _id as a String
+
+  userID: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  activityID: { type: mongoose.Schema.Types.ObjectId, ref: "Activity", required: true },
+  status: { type: String, required: true }, // In Progress, Completed, Not Started
   score: { type: Number },
-  completedTime: { type: Date },
+  completedTimestamp: { type: Date },
 });
 
-UserActivitySchema.index({ UserID: 1, ActivityID: 1 }, { unique: true });
+userActivitySchema.index({ userID: 1, activityID: 1 }, { unique: true });
 
-module.exports = mongoose.model("UserActivity", UserActivitySchema);
+module.exports = mongoose.model("UserActivity", userActivitySchema);
