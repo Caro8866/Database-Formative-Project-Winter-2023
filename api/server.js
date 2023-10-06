@@ -18,12 +18,22 @@ const options = {
   allowedHeaders: "Content-Type, Authorization, X-Requested-With, content-type",
 };
 
+// connect to mongodb
+mongoose
+  .connect(`${uri}/eLearningDB`)
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
 // USER
-const User = require("./schemas/User");
+const User = require("../schemas/user");
 
 /* Get All Users */
 app.get("/users", cors(options), (req, res) => {
@@ -80,7 +90,7 @@ app.delete("/users/:id", cors(options), (req, res) => {
 });
 
 /* TOPIC */
-const Topic = require("./schemas/Topic");
+const Topic = require("../schemas/topic");
 
 /* Get All Topics */
 app.get("/topics", async (req, res) => {
@@ -149,7 +159,7 @@ app.delete("/topics/:id", cors(options), (req, res) => {
 });
 
 /* ACTIVITY */
-const Activity = require("./schemas/Activity");
+const Activity = require("../schemas/activity");
 
 /* Create a Activity */
 app.post("/activities", cors(options), (req, res) => {
@@ -176,7 +186,7 @@ app.get("/activities", cors(options), (req, res) => {
 });
 
 /* USER ACTIVITY */
-const UserActivity = require("./schemas/UserActivity");
+const UserActivity = require("../schemas/userActivity");
 
 /* Create a User Activity */
 
