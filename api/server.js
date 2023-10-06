@@ -62,16 +62,19 @@ app.get("/users/:id", cors(options), (req, res) => {
 });
 
 /* Update a User  */
-app.put("/user/:id", (req, res) => {
-  User.findByIdAndUpdate(req.params.id, req.body, { new: true })
-    .then((user) => {
-      if (!user) {
-        return res.status(404).send("User not found");
-      }
-      res.send(user);
-    })
+app.put("/users/:id", cors(options), (req, res) => {
+  User.findByIdAndUpdate(
+    req.params.id,
+    {
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+    },
+    { new: true }
+  )
+    .then((user) => res.status(200).json(user))
     .catch((err) => {
-      res.status(500).send(err);
+      res.status(500).json({ error: "Error updating user", err });
     });
 });
 
@@ -104,15 +107,18 @@ app.get("/topics", async (req, res) => {
 
 /* Create a Topic */
 app.post("/topics", cors(options), (req, res) => {
-  const newTopic = new Topic(req.body);
+  const newTopic = new Topic({
+    title: req.body.title,
+    description: req.body.description,
+  });
   newTopic
     .save()
     .then((topic) => {
-      res.status(201).send(topic);
+      const resID = new mongoose.Types.ObjectId(res.insertedId);
+      console.log(resID);
+      res.status(201).json({ insertedID: resID });
     })
-    .catch((err) => {
-      res.status(400).send(err);
-    });
+    .catch((err) => console.error("Error Saving Topic:", err));
 });
 
 /* Get a Topic */
@@ -132,29 +138,28 @@ app.get("/topics/:id", cors(options), (req, res) => {
 
 /* Update a Topic  */
 app.put("/topics/:id", cors(options), async (req, res) => {
-  try {
-    const topic = await Topic.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (topic) {
-      res.send(topic);
-    } else {
-      res.status(404).send("Topic not found");
-    }
-  } catch (err) {
-    res.status(400).send(err);
-  }
+  Topic.findByIdAndUpdate(
+    req.params.id,
+    {
+      title: req.body.title,
+      description: req.body.description,
+    },
+    { new: true }
+  )
+    .then((topic) => {
+      res.status(200).json(topic);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: "Error updating topic", err });
+    });
 });
 
 /* Delete a Topic */
 app.delete("/topics/:id", cors(options), (req, res) => {
   Topic.findByIdAndDelete(req.params.id)
-    .then((topic) => {
-      if (!topic) {
-        res.status(404).send("Topic not found");
-      }
-      res.send(topic);
-    })
+    .then((topic) => res.status(200).json(topic))
     .catch((err) => {
-      res.status(500).send(err);
+      res.status(500).send({ error: "Error Deleting Topic:", err });
     });
 });
 
@@ -185,19 +190,71 @@ app.get("/activities", cors(options), (req, res) => {
     });
 });
 
+/* Get a Activity */
+app.get("/activities/:id", cors(options), (req, res) => {
+  Activity.findById(req.params.id)
+    .then((activity) => {
+      if (activity) {
+        res.send(activity);
+      } else {
+        res.status(404).send("Activity not found");
+      }
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+});
+
+/* Update a Activity  */
+app.put("/activities/:id", cors(options), (req, res) => {
+  Activity.findByIdAndUpdate(
+    req.params.id,
+    {
+      topicID: req.body.topicID,
+      name: req.body.name,
+      type: req.body.type,
+      content: req.body.content,
+    },
+    { new: true }
+  )
+    .then((activity) => {
+      res.status(200).json(activity);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: "Error updating activity", err });
+    });
+});
+
+/* Delete a Activity */
+app.delete("/activities/:id", cors(options), (req, res) => {
+  Activity.findByIdAndDelete(req.params.id)
+    .then((activity) => res.status(200).json(activity))
+    .catch((err) => {
+      res.status(500).send({ error: "Error Deleting Activity:", err });
+    });
+});
+
 /* USER ACTIVITY */
 const UserActivity = require("../schemas/userActivity");
 
 /* Create a User Activity */
-
 app.post("/userActivities", cors(options), (req, res) => {
-  const newUserActivity = new UserActivity(req.body);
+  const newUserActivity = new UserActivity({
+    userID: req.body.userID,
+    activityID: req.body.activityID,
+    _id: req.body.userID + "-" + req.body.activityID,
+    status: req.body.status,
+    score: req.body.score,
+    completedTimestamp: req.body.completedTimestamp,
+  });
+
   newUserActivity
     .save()
     .then((userActivity) => {
       res.status(201).send(userActivity);
     })
     .catch((err) => {
+      console.log("Error: ", err);
       res.status(400).send(err);
     });
 });
@@ -225,5 +282,35 @@ app.get("/userActivities/:id", cors(options), (req, res) => {
     })
     .catch((err) => {
       res.status(500).send(err);
+    });
+});
+
+/* Update a User Activity  */
+app.put("/userActivities/:id", cors(options), (req, res) => {
+  UserActivity.findByIdAndUpdate(
+    req.params.id,
+    {
+      userID: req.body.userID,
+      activityID: req.body.activityID,
+      status: req.body.status,
+      score: req.body.score,
+      completedTimestamp: req.body.completedTimestamp,
+    },
+    { new: true }
+  )
+    .then((userActivity) => {
+      res.status(200).json(userActivity);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: "Error updating user activity", err });
+    });
+});
+
+/* Delete a User Activity */
+app.delete("/userActivities/:id", cors(options), (req, res) => {
+  UserActivity.findByIdAndDelete(req.params.id)
+    .then((userActivity) => res.status(200).json(userActivity))
+    .catch((err) => {
+      res.status(500).send({ error: "Error Deleting User Activity:", err });
     });
 });
