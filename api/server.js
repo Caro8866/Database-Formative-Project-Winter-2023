@@ -2,6 +2,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+const jwt = require("jsonwebtoken");
+
+const dotenv = require("dotenv");
+dotenv.config();
+
 const app = express();
 const port = process.env.PORT || 3000;
 const uri = "mongodb://127.0.0.1:27017";
@@ -34,6 +39,26 @@ app.listen(port, () => {
 
 // USER
 const User = require("../schemas/user");
+
+/* User Sign In */
+app.post("/auth/signIn", cors(options), (req, res) => {
+  User.findOne({
+    email: req.body.email,
+    password: req.body.password,
+  })
+    .then((User) => {
+      if (User.isValidPassword(req.body.password)) {
+        const generatedToken = jwt.sign({ _id: User._id }, process.env.jwt_secret);
+        res.status(200).json({ token: generatedToken });
+        return;
+      }
+      res.status(401).json({ message: "Invalid login" }); // email match, but password does not!
+      return;
+    })
+    .catch((error) => {
+      res.status(401).json({ message: "Invalid login", error }); // email does not match.
+    });
+});
 
 /* Get All Users */
 app.get("/users", cors(options), (req, res) => {

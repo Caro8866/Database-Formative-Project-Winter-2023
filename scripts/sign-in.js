@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector(".sign-in-form");
 
-  function signIn(usernameOrEmail, password) {
-    fetch("/auth/signIn", {
+  function signIn(email, password) {
+    fetch("http://localhost:5500/auth/signIn", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ usernameOrEmail, password }),
+      body: JSON.stringify({ email, password }),
     })
       .then((response) => {
         if (response.ok) {
@@ -28,9 +28,10 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const usernameOrEmail = document.getElementById("usernameOrEmail").value;
-    const password = document.getElementById("password").value;
+    const email = document.querySelector("#email").value;
 
-    signIn(usernameOrEmail, password);
+    const password = document.querySelector("#password").value;
+
+    signIn(email, password);
   });
 });
