@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     clone.querySelector(".topic-description").textContent = topic.description;
 
     topicBtn.addEventListener("click", () => {
-      window.location.href = `http://localhost:3000/topics/${topic.id}`;
+      window.location.href = `topic.html?id=${topic._id}`;
     });
 
     topicList.appendChild(clone);
