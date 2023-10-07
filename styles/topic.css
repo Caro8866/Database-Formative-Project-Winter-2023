@@ -51,3 +51,14 @@ li {
   margin-bottom: 0.75rem;
   color: var(--neutral-200);
 }
+
+@media screen and (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "description"
+      "resources"
+      "activities";
+  }
+}
