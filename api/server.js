@@ -132,9 +132,11 @@ app.get("/topics", async (req, res) => {
 
 /* Create a Topic */
 app.post("/topics", cors(options), (req, res) => {
+  const resources = JSON.parse(req.body.resources || "[]");
   const newTopic = new Topic({
     title: req.body.title,
     description: req.body.description,
+    resources: resources,
   });
   newTopic
     .save()
@@ -224,6 +226,18 @@ app.get("/activities/:id", cors(options), (req, res) => {
       } else {
         res.status(404).send("Activity not found");
       }
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+});
+
+/* Get Activities by Topic */
+app.get("/activities/topic/:id", cors(options), (req, res) => {
+  const id = req.params.id;
+  Activity.find({ topicID: id })
+    .then((activities) => {
+      res.send(activities);
     })
     .catch((err) => {
       res.status(500).send(err);
