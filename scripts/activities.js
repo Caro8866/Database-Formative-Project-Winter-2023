@@ -17,22 +17,31 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch(`http://localhost:3000/activities/topic/${topic._id}`)
           .then((response) => response.json())
           .then((activities) => {
-            activities.forEach((activity) => {
-              const tr = document.createElement("tr");
-              ["name", "type", "status", "_id"].forEach((key) => {
-                const td = document.createElement("td");
-                td.textContent = activity[key];
-                if (key === "_id") {
-                  const a = document.createElement("a");
-                  a.href = `activity.html?id=${activity[key]}`;
-                  a.textContent = "View Activity";
-                  td.textContent = "";
-                  td.appendChild(a);
-                }
-                tr.appendChild(td);
+            if (activities && activities.length > 0) {
+              activities.forEach((activity) => {
+                const tr = document.createElement("tr");
+                ["name", "type", "status", "_id"].forEach((key) => {
+                  const td = document.createElement("td");
+                  td.textContent = activity[key];
+                  if (key === "_id") {
+                    const a = document.createElement("a");
+                    a.href = `activity.html?id=${activity[key]}`;
+                    a.textContent = "View Activity";
+                    td.textContent = "";
+                    td.appendChild(a);
+                  }
+                  tr.appendChild(td);
+                });
+                activityTableBody.appendChild(tr);
               });
+            } else {
+              const tr = document.createElement("tr");
+              const td = document.createElement("td");
+              td.textContent = "No activities";
+              td.colSpan = 4;
+              tr.appendChild(td);
               activityTableBody.appendChild(tr);
-            });
+            }
           });
 
         clone.querySelector(".topic-header").addEventListener("click", function (event) {
