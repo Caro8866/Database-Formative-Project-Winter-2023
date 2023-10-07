@@ -107,9 +107,11 @@ app.get("/topics", async (req, res) => {
 
 /* Create a Topic */
 app.post("/topics", cors(options), (req, res) => {
+  const resources = JSON.parse(req.body.resources || "[]");
   const newTopic = new Topic({
     title: req.body.title,
     description: req.body.description,
+    resources: resources,
   });
   newTopic
     .save()
