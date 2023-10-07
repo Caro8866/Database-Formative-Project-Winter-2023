@@ -59,6 +59,7 @@ header {
 main {
   display: grid;
   grid-template-areas: "side-navigation content";
+  grid-template-columns: 145px auto;
   height: 100vh;
   background-color: var(--bg);
   grid-auto-columns: auto 1fr;
@@ -78,7 +79,7 @@ main {
 }
 
 .divider {
-  border-bottom: 2px solid var(--neutral-100);
+  border-bottom: 1px solid var(--neutral-100);
   margin-block: 1.5rem;
   width: 4rem;
   align-self: center;
@@ -89,6 +90,10 @@ main {
   grid-area: content;
   padding: 1rem;
   padding-top: 3.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Typography */
@@ -148,6 +153,7 @@ button {
   cursor: pointer;
   transition: 0.3s ease-in-out;
   text-decoration: none;
+  width: 175px;
 }
 
 /* Primary Button */
