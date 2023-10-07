@@ -61,6 +61,8 @@ main {
   grid-template-areas: "side-navigation content";
   height: 100vh;
   background-color: var(--bg);
+  grid-auto-columns: auto 1fr;
+  justify-items: center;
 }
 
 .side-navigation {
