@@ -1,0 +1,91 @@
+@import url(./main.css);
+
+/* Global Styles */
+
+.topic-list,
+.content {
+  overflow-y: auto;
+}
+
+.content {
+  max-height: 800px;
+  width: 100%;
+}
+
+.topic-header,
+.show,
+.hide {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.hide svg {
+  transform: rotate(90deg);
+  transition: rotate 0.3s ease-in-out;
+}
+
+/* Text formatting */
+
+h1::before {
+  display: none;
+}
+
+.topic-header h2 {
+  margin-bottom: 0;
+}
+
+p {
+  font-size: 0.7rem;
+}
+
+/* Section Styling */
+
+.content section {
+  background-color: var(--neutral-000);
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 1176px;
+  width: 100%;
+}
+
+/* Activity Table Styling */
+
+.activity-table {
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: collapse;
+}
+
+.activity-table th,
+.activity-table td {
+  padding: 0.4rem 0;
+}
+
+.activity-table th {
+  text-align: left;
+  font-weight: var(--fw-semi-bold);
+  border-bottom: 1px solid var(--neutral-100);
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 750px) {
+  .content section {
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .topic-list {
+    max-height: 80vh;
+  }
+
+  .activity-table td:nth-child(2),
+  .activity-table td:nth-child(3),
+  .activity-table th:nth-child(2),
+  .activity-table th:nth-child(3) {
+    display: none;
+  }
+}
