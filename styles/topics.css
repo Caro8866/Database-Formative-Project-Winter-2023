@@ -18,9 +18,13 @@ h1 {
   grid-template-columns: 3fr 0fr 1fr;
   justify-content: space-around;
   align-items: center;
+  margin-bottom: 2rem;
 }
-
-.divider {
+.topic-list {
+  max-height: 600px;
+  overflow-y: auto;
+}
+.topic-divider {
   border-right: 1px solid var(--neutral-100);
   border-bottom: none;
   height: 100%;
@@ -42,7 +46,7 @@ p {
   font-weight: var(--fw-regular);
 }
 
-.topic-destination {
+.topic-description {
   /* Line Clamp */
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -61,19 +65,24 @@ p {
     align-items: center;
   }
 
-  .divider {
+  .topic-divider {
     border-right: none;
     border-bottom: 1px solid var(--neutral-100);
     width: 80%;
     height: 0;
     padding: 0;
+    margin-top: 1rem;
   }
 
   .right-side {
     margin-top: 1rem;
   }
 
-  .topic-destination {
+  .topic-description {
     margin-bottom: 0rem;
+  }
+
+  .topic-list {
+    max-height: 80vh;
   }
 }
