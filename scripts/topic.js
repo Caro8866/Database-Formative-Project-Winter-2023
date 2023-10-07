@@ -54,14 +54,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function displayResources(resources) {
     const resourcesList = document.querySelector(".resources ul");
-    let hasResources = false;
 
+    // Remove existing list items
     while (resourcesList.firstChild) {
       resourcesList.removeChild(resourcesList.firstChild);
     }
 
-    if (resources) {
-      hasResources = true;
+    // Check if resources array exists and has items
+    if (resources && resources.length > 0) {
       resources.forEach((resource) => {
         const listItem = document.createElement("li");
         const link = document.createElement("a");
@@ -72,9 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         listItem.appendChild(link);
         resourcesList.appendChild(listItem);
       });
-    }
-
-    if (!hasResources) {
+    } else {
       const listItem = document.createElement("li");
       const link = document.createElement("a");
 
