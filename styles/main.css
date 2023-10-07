@@ -59,8 +59,7 @@ header {
 main {
   display: grid;
   grid-template-areas: "side-navigation content";
-  grid-template-columns: 145px auto;
-  height: 100vh;
+  height: calc(100vh - 65px);
   background-color: var(--bg);
   grid-auto-columns: auto 1fr;
   justify-items: center;
@@ -90,10 +89,6 @@ main {
   grid-area: content;
   padding: 1rem;
   padding-top: 3.5rem;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /* Typography */
@@ -153,7 +148,6 @@ button {
   cursor: pointer;
   transition: 0.3s ease-in-out;
   text-decoration: none;
-  width: 175px;
 }
 
 /* Primary Button */
