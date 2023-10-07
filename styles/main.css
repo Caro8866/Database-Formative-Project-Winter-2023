@@ -59,7 +59,7 @@ header {
 main {
   display: grid;
   grid-template-areas: "side-navigation content";
-  height: 100vh;
+  height: calc(100vh - 65px);
   background-color: var(--bg);
   grid-auto-columns: auto 1fr;
   justify-items: center;
