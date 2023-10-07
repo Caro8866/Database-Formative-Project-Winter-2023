@@ -11,14 +11,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const template = document.querySelector("#topic-template");
     const clone = template.content.cloneNode(true);
     const topicList = document.querySelector(".topic-list");
+    const topicBtn = clone.querySelector(".topic-btn");
 
     clone.querySelector(".topic-title").textContent = topic.title;
     clone.querySelector(".topic-description").textContent = topic.description;
 
-    clone.querySelector(".topic-link").addEventListener("click", () => {
-      localStorage.setItem("topic", JSON.stringify(topic));
-      window.location.href = "topic.html";
+    topicBtn.addEventListener("click", () => {
+      window.location.href = `http://localhost:3000/topics/${topic.id}`;
     });
+
     topicList.appendChild(clone);
   }
 });
