@@ -22,6 +22,7 @@ h1 {
 
 .divider {
   border-right: 1px solid var(--neutral-100);
+  border-bottom: none;
   height: 100%;
   padding: 1.2rem;
   margin-left: 2rem;
@@ -52,7 +53,7 @@ p {
 
 /* media queries */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 750px) {
   .content section {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 0fr 1fr;
