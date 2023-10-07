@@ -205,6 +205,18 @@ app.get("/activities/:id", cors(options), (req, res) => {
     });
 });
 
+/* Get Activities by Topic */
+app.get("/activities/topic/:id", cors(options), (req, res) => {
+  const id = req.params.id;
+  Activity.find({ topicID: id })
+    .then((activities) => {
+      res.send(activities);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+});
+
 /* Update a Activity  */
 app.put("/activities/:id", cors(options), (req, res) => {
   Activity.findByIdAndUpdate(
