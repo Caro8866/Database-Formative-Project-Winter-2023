@@ -1,0 +1,71 @@
+h1::before {
+  display: none;
+}
+
+h1 {
+  left: 0;
+  margin-bottom: 1.5rem;
+}
+.content {
+  max-height: 800px;
+  overflow-y: auto;
+}
+.content section {
+  background-color: var(--neutral-000);
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 1176px;
+  width: 100%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 12.5% 30% 42.5% 15%;
+  grid-template-areas:
+    "overview progress"
+    "topics topics"
+    "activities activities"
+    "contact contact";
+  gap: 1.5rem;
+}
+
+.overview {
+  grid-area: overview;
+}
+
+.progress {
+  grid-area: progress;
+}
+
+.topics {
+  grid-area: topics;
+  display: flex;
+  flex-flow: row nowrap;
+  overflow-y: auto;
+  max-width: 80vw;
+  gap: 1.5em;
+}
+
+.topics section {
+  min-width: 368px;
+}
+.topics section p {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topics section a {
+  display: block;
+  text-align: right;
+}
+
+.activities {
+  grid-area: activities;
+}
+
+.contact {
+  grid-area: contact;
+}

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/overview.css" />
   </head>
   <body>
     <header>
@@ -64,7 +65,74 @@
           <span class="tab-text">Log in</span>
         </a>
       </nav>
-      <div class="content"></div>
+      <div class="content">
+        <h1>Hello, <span class="username">Username!</span></h1>
+        <div class="grid">
+          <section class="overview">
+            <h2>Course Overview</h2>
+            <p>Here is the overview of your progress. You can check how far you are so far and see your next suggested course.</p>
+          </section>
+          <section class="progress">
+            <h2>Your Progress</h2>
+            <div class="progress-bar">
+              <div class="progress-bar__progress" style="width: 50%"></div>
+              <div class="progress-bar__text">11/20</div>
+            </div>
+            <p>You completed <span class="completed-percentage">45.5</span>% of all assigned activities</p>
+          </section>
+          <div class="topics">
+            <section>
+              <h2>Topic 1</h2>
+              <p>
+                Sed feugiat placerat dignissim. Integer vitae quam quis lorem lacinia venenatis vel sollicitudin ex. Sed urna ex, semper eget nulla vel, ullamcorper suscipit elit. Pellentesque id dapibus enim. Donec ut varius dui. Vestibulum nec
+                commodo ligula. Sed ipsum nunc...
+              </p>
+              <a href="/topic.html" class="button">Read more</a>
+            </section>
+            <section>
+              <h2>Topic 2</h2>
+              <p>
+                Sed feugiat placerat dignissim. Integer vitae quam quis lorem lacinia venenatis vel sollicitudin ex. Sed urna ex, semper eget nulla vel, ullamcorper suscipit elit. Pellentesque id dapibus enim. Donec ut varius dui. Vestibulum nec
+                commodo ligula. Sed ipsum nunc...
+              </p>
+              <a href="/topic.html" class="button">Read more</a>
+            </section>
+            <section>
+              <h2>Topic 3</h2>
+              <p>
+                Sed feugiat placerat dignissim. Integer vitae quam quis lorem lacinia venenatis vel sollicitudin ex. Sed urna ex, semper eget nulla vel, ullamcorper suscipit elit. Pellentesque id dapibus enim. Donec ut varius dui. Vestibulum nec
+                commodo ligula. Sed ipsum nunc...
+              </p>
+              <a href="/topic.html" class="button">Read more</a>
+            </section>
+            <section>
+              <h2>Topic 4</h2>
+              <p>
+                Sed feugiat placerat dignissim. Integer vitae quam quis lorem lacinia venenatis vel sollicitudin ex. Sed urna ex, semper eget nulla vel, ullamcorper suscipit elit. Pellentesque id dapibus enim. Donec ut varius dui. Vestibulum nec
+                commodo ligula. Sed ipsum nunc...
+              </p>
+              <a href="/topic.html" class="button">Read more</a>
+            </section>
+          </div>
+          <section class="activities">
+            <h2>Activities In Progress</h2>
+            <table class="activity-table">
+              <thead>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Link to Activity</th>
+              </thead>
+              <tbody class="activity-table-body">
+                <!-- Activities will be inserted here -->
+              </tbody>
+            </table>
+          </section>
+          <section class="contact">
+            <h2>Need help?</h2>
+            <p>If you still are having trouble with our platform, or you were not assigned to the correct courses please <a href="https://github.com/Caro8866/Database-Formative-Project-Winter-2023">Contact Us</a>.</p>
+          </section>
+        </div>
+      </div>
     </main>
   </body>
 </html>
