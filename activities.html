@@ -68,10 +68,10 @@
       <div class="content">
         <h1>Topics</h1>
         <div class="topic-list">
-          <section>
+          <!--    <section>
             <div class="topic-header">
               <h2 class="topic-title">Topic #1</h2>
-              <a href="" class="hide">
+              <a href="" class="show">
                 <span>Show activities</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="24" viewBox="0 0 14 24" fill="none">
                   <path d="M1.9375 1.875L12.0625 12L1.9375 22.125" stroke="#006748" stroke-width="3.375" stroke-linecap="round" stroke-linejoin="round" />
@@ -114,22 +114,34 @@
                 </tbody>
               </table>
             </div>
-          </section>
+          </section> -->
         </div>
       </div>
     </main>
     <!-- html topic template -->
     <template id="topic-template">
       <section>
-        <div>
+        <div class="topic-header">
           <h2 class="topic-title"></h2>
-          <p class="topic-description"></p>
+          <a href="" class="show">
+            <span>Show activities</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="24" viewBox="0 0 14 24" fill="none">
+              <path d="M1.9375 1.875L12.0625 12L1.9375 22.125" stroke="#006748" stroke-width="3.375" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
         </div>
-        <div class="topic-divider"></div>
-
-        <div class="right-side">
-          <p class="small-text">Completed activites <span class="completed-activities">8</span> / <span class="total-activities">10</span></p>
-          <button class="btn btn-primary topic-btn">Read more</button>
+        <div class="topic-activities">
+          <table class="activity-table">
+            <thead>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Status</th>
+              <th>Link to Activity</th>
+            </thead>
+            <tbody class="activity-table-body">
+              <!-- Activities will be inserted here -->
+            </tbody>
+          </table>
         </div>
       </section>
     </template>

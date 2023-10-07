@@ -12,6 +12,10 @@
   width: 100%;
 }
 
+.content section {
+  margin-bottom: 2rem;
+}
+
 .topic-header,
 .show,
 .hide {
@@ -24,6 +28,10 @@
 .hide svg {
   transform: rotate(90deg);
   transition: rotate 0.3s ease-in-out;
+}
+
+.topic-activities {
+  display: none;
 }
 
 /* Text formatting */
@@ -57,7 +65,6 @@ p {
   margin-top: 1rem;
   border-collapse: collapse;
 }
-
 .activity-table th,
 .activity-table td {
   padding: 0.4rem 0;
@@ -65,7 +72,8 @@ p {
 
 .activity-table th {
   text-align: left;
-  font-weight: var(--fw-semi-bold);
+  font-weight: var(--fw-light);
+  color: var(--neutral-200);
   border-bottom: 1px solid var(--neutral-100);
 }
 
