@@ -1,0 +1,53 @@
+h1::before {
+  display: none;
+}
+
+h1 {
+  left: 0;
+  margin-bottom: 1.5rem;
+}
+.content {
+  max-height: 800px;
+  overflow-y: auto;
+}
+.content section {
+  background-color: var(--neutral-000);
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 1176px;
+  width: 100%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "description resources"
+    "description activities";
+  gap: 1.5rem;
+}
+
+.description {
+  grid-area: description;
+}
+
+.resources {
+  grid-area: resources;
+}
+
+.activities {
+  grid-area: activities;
+}
+
+ul {
+  list-style: square;
+  padding: 0;
+  margin: 0;
+  margin-bottom: -0.75rem;
+}
+
+li {
+  margin-bottom: 0.75rem;
+  color: var(--neutral-200);
+}
