@@ -2,6 +2,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+
+const dotenv = require("dotenv");
+dotenv.config();
+
 const app = express();
 const port = process.env.PORT || 3000;
 const uri = "mongodb://127.0.0.1:27017";
@@ -34,6 +40,54 @@ app.listen(port, () => {
 
 // USER
 const User = require("../schemas/user");
+
+app.post("/auth/signIn", cors(options), (req, res) => {
+  User.findOne({ email: req.body.email })
+    .then((user) => {
+      if (!user) {
+        console.log("Email not found");
+        return res.status(401).json({ message: "Invalid login" });
+      }
+
+      return user.isValidPassword(req.body.password).then((isValid) => {
+        if (isValid) {
+          const token = jwt.sign({ _id: user._id }, process.env.jwt_secret);
+          return res.status(200).json({ token });
+        } else {
+          console.log("Password does not match");
+          return res.status(401).json({ message: "Invalid login" });
+        }
+      });
+    })
+    .catch((error) => {
+      console.log("Server error:", error);
+      res.status(401).json({ message: "Invalid login", error });
+    });
+});
+
+/// User Sign Up endpoint
+app.post("/auth/signUp", cors(options), (req, res) => {
+  const { username, email, password } = req.body;
+
+  bcrypt
+    .hash(password, 10) // Hash the password
+    .then((hashedPassword) => {
+      const newUser = new User({
+        username: username,
+        email: email,
+        password: hashedPassword,
+      });
+
+      return newUser.save(); // Save the user to database
+    })
+    .then((savedUser) => {
+      const token = jwt.sign({ _id: savedUser._id }, process.env.jwt_secret);
+      res.status(200).json({ token });
+    })
+    .catch((error) => {
+      res.status(400).json({ message: "Sign-up failed", error });
+    });
+});
 
 /* Get All Users */
 app.get("/users", cors(options), (req, res) => {
