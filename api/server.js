@@ -18,9 +18,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const options = {
-  origin: "http://localhost:5500",
+  origin: [
+    "http://localhost:5500",
+    "http://localhost:5500/sign-up.html",
+    "http://localhost:5500/sign-in.html",
+    "http://localhost:5500/topics.html",
+    "http://localhost:5500/activities.html",
+    "http://localhost:5500/progress.html",
+  ],
   optionsSuccessStatus: 200,
-  methods: "GET, POST, PUT, DELETE",
+  methods: ["GET, POST, PUT, DELETE"],
   allowedHeaders: "Content-Type, Authorization, X-Requested-With, content-type",
 };
 
@@ -42,6 +49,7 @@ app.listen(port, () => {
 const User = require("../schemas/user");
 
 app.post("/auth/signIn", cors(options), (req, res) => {
+  console.log(req.body);
   User.findOne({ email: req.body.email })
     .then((user) => {
       if (!user) {

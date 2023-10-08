@@ -1,13 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector(".sign-in-form");
 
-  const email = document.querySelector("#email").value;
-  const password = document.querySelector("#password").value;
+  let email = document.querySelector("#email").value;
+  let password = document.querySelector("#password").value;
 
   function signIn(email, password) {
-    email = "";
-    password = "";
-
     fetch("http://localhost:3000/auth/signIn", {
       method: "POST",
       headers: {
@@ -37,15 +34,11 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const email = document.querySelector("#email").value;
-
-    const password = document.querySelector("#password").value;
-
+    let email = document.querySelector("#email").value;
+    let password = document.querySelector("#password").value;
     signIn(email, password);
 
     // Reset the form
     form.reset();
-    email = "";
-    password = "";
   });
 });

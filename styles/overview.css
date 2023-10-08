@@ -43,7 +43,7 @@ h1 {
   display: flex;
   flex-flow: row nowrap;
   overflow-y: auto;
-  max-width: 80vw;
+  max-width: 100%;
   gap: 1.5em;
 }
 
