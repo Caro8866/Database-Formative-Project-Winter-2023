@@ -49,7 +49,6 @@ app.listen(port, () => {
 const User = require("../schemas/user");
 
 app.post("/auth/signIn", cors(options), (req, res) => {
-  console.log(req.body);
   User.findOne({ email: req.body.email })
     .then((user) => {
       if (!user) {
@@ -71,6 +70,26 @@ app.post("/auth/signIn", cors(options), (req, res) => {
       console.log("Server error:", error);
       res.status(401).json({ message: "Invalid login", error });
     });
+});
+
+app.post("/auth/verify", cors(options), (req, res) => {
+  const verification = jwt.verify(req.body.token, process.env.jwt_secret);
+  if (verification._id.length) {
+    User.findOne({ _id: new mongoose.Types.ObjectId(verification._id) }).then(
+      (user) => {
+        // console.log(user.username, user.email);
+        if (user) {
+          return res.status(200).json({
+            username: user.username,
+            email: user.email,
+            id: new mongoose.Types.ObjectId(user._id),
+          });
+        } else {
+          return res.status(400).json({ message: "No user found" });
+        }
+      }
+    );
+  }
 });
 
 /// User Sign Up endpoint
@@ -368,7 +387,9 @@ app.get("/userActivities/inProgress/:id", cors(options), (req, res) => {
       if (userActivities.length > 0) {
         res.send(userActivities);
       } else {
-        res.status(404).send("No activities in progress found for the user.");
+        res
+          .status(404)
+          .json({ message: "No activities in progress found for the user." });
       }
     })
     .catch((err) => {
