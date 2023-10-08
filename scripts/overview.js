@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const userData = await getUserData();
   console.log(userData);
-
   displayActivities(userData.id);
   displayTopics(userData.id);
 });
