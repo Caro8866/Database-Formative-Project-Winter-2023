@@ -4,6 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // display activities in progress
   const userID = "some_user_id"; // Replace this with the actual user ID
 
+  displayActivities(userID);
+  displayTopics(userID);
+});
+
+function displayActivities(userID) {
   fetch(`http://localhost:3000/userActivities/inProgress/${userID}`)
     .then((response) => response.json())
     .then((userActivities) => {
@@ -33,4 +38,18 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch((error) => {
       console.error("Error fetching user activities:", error);
     });
-});
+}
+
+function displayTopics(userID) {
+  fetch("http://localhost:3000/topics")
+    .then((response) => response.json())
+    .then((topics) => {
+      const topicList = document.querySelector(".topic-list");
+
+      topics.forEach((topic) => {
+        const li = document.createElement("li");
+        li.textContent = topic.name;
+        topicList.appendChild(li);
+      });
+    });
+}
