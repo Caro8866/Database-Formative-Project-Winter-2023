@@ -7,7 +7,11 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true, minlength: 8 },
 });
 
-User.methods.isValidPassword = async function (password) {
+userSchema.methods.setPassword = function (password) {
+  this.password = bcrypt.hashSync(password, 10);
+};
+
+userSchema.methods.isValidPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
