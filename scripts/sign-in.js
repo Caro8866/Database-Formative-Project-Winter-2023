@@ -1,8 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector(".sign-in-form");
 
+  const email = document.querySelector("#email").value;
+  const password = document.querySelector("#password").value;
+
   function signIn(email, password) {
-    fetch("http://localhost:5500/auth/signIn", {
+    email = "";
+    password = "";
+
+    fetch("http://localhost:3000/auth/signIn", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -11,14 +17,17 @@ document.addEventListener("DOMContentLoaded", () => {
     })
       .then((response) => {
         if (response.ok) {
-          return response.json(); // Parse the JSON response
+          return response.json();
         } else {
-          console.log("Login failed");
-          return Promise.reject("Login failed");
+          return response.json().then((errorData) => {
+            console.log("Login failed, server responded with:", errorData);
+            throw new Error("Login failed");
+          });
         }
       })
       .then((data) => {
         window.location.href = "/index.html";
+        localStorage.setItem("token", data.token);
       })
       .catch((error) => {
         console.error("There was a problem signing in:", error);
@@ -33,5 +42,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = document.querySelector("#password").value;
 
     signIn(email, password);
+
+    // Reset the form
+    form.reset();
+    email = "";
+    password = "";
   });
 });
