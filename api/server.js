@@ -353,6 +353,21 @@ app.get("/userActivities/:id", cors(options), (req, res) => {
     });
 });
 
+/* Get a Users in progress activities */
+app.get("/userActivities/inProgress/:id", cors(options), (req, res) => {
+  UserActivity.find({ userID: req.params.id, status: "inProgress" })
+    .then((userActivities) => {
+      if (userActivities.length > 0) {
+        res.send(userActivities);
+      } else {
+        res.status(404).send("No activities in progress found for the user.");
+      }
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+});
+
 /* Update a User Activity  */
 app.put("/userActivities/:id", cors(options), (req, res) => {
   UserActivity.findByIdAndUpdate(
